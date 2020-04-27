@@ -31,7 +31,7 @@
       @include mobile {
         width: 361px;
         transform: translateX(-16px);
-        margin-bottom: 14px;
+        margin-bottom: 19px;
       }
     }
 
@@ -111,9 +111,18 @@
       svg {
         top: 2px;
 
+        @include mobile {
+          left: -56px;
+        }
+
         &:last-child {
           top: 46px;
           left: -40px;
+
+          @include mobile {
+            top: 55px;
+            left: -45px;
+          }
         }
       }
 
@@ -123,6 +132,11 @@
           &:last-child {
             top: 46px;
             left: -40px;
+
+            @include mobile {
+              top: 43px;
+              left: -45px;
+            }
           }
         }
       }
@@ -133,6 +147,25 @@
 
         svg {
           &:last-child {
+            display: none;
+          }
+        }
+      }
+
+      &:nth-child(3) {
+
+        svg:nth-child(2) {
+          display: none;
+
+          @include mobile {
+            display: block;
+            left: -45px;
+            top: 55px;
+          }
+        }
+
+        svg:last-child {
+          @include mobile {
             display: none;
           }
         }

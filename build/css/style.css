@@ -1638,6 +1638,12 @@ main {
   background-color: #f5f6fa;
 }
 
+picture {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 /* Blocks */
 .header-cover {
   display: -webkit-box;
@@ -1760,7 +1766,7 @@ main {
     width: 361px;
     -webkit-transform: translateX(-16px);
             transform: translateX(-16px);
-    margin-bottom: 14px;
+    margin-bottom: 19px;
   }
 }
 
@@ -1857,9 +1863,22 @@ main {
   top: 2px;
 }
 
+@media (max-width: 559px) {
+  .mail__list.prolong li svg {
+    left: -56px;
+  }
+}
+
 .mail__list.prolong li svg:last-child {
   top: 46px;
   left: -40px;
+}
+
+@media (max-width: 559px) {
+  .mail__list.prolong li svg:last-child {
+    top: 55px;
+    left: -45px;
+  }
 }
 
 .mail__list.prolong li:first-child svg {
@@ -1871,6 +1890,13 @@ main {
   left: -40px;
 }
 
+@media (max-width: 559px) {
+  .mail__list.prolong li:first-child svg:last-child {
+    top: 43px;
+    left: -45px;
+  }
+}
+
 .mail__list.prolong li:last-child {
   margin-bottom: 0;
   min-height: 64px;
@@ -1878,6 +1904,24 @@ main {
 
 .mail__list.prolong li:last-child svg:last-child {
   display: none;
+}
+
+.mail__list.prolong li:nth-child(3) svg:nth-child(2) {
+  display: none;
+}
+
+@media (max-width: 559px) {
+  .mail__list.prolong li:nth-child(3) svg:nth-child(2) {
+    display: block;
+    left: -45px;
+    top: 55px;
+  }
+}
+
+@media (max-width: 559px) {
+  .mail__list.prolong li:nth-child(3) svg:last-child {
+    display: none;
+  }
 }
 
 .mail__text {
