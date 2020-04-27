@@ -1,0 +1,23 @@
+.footer {
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  padding-top: 19px;
+  padding-bottom: 32px;
+  letter-spacing: 0.1px;
+  background-color: $color-grey;
+  border-top: 1px solid #E5E6EB;
+
+  p {
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+    &:last-child {
+      margin-top: 17px;
+    }
+  }
+
+  a {
+    color: $color-red;
+  }
+}
