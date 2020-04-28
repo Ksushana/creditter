@@ -583,6 +583,9 @@ picture {
   margin: 2px auto;
   -webkit-transform: translateX(24px);
           transform: translateX(24px);
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .mail img.prolong {
