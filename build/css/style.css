@@ -590,6 +590,7 @@ picture {
 
 .mail img.prolong {
   width: 509px;
+  height: 100%;
   margin: 18px auto;
   -webkit-transform: translateX(-33px);
           transform: translateX(-33px);
