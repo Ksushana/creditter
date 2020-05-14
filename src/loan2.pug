@@ -170,7 +170,7 @@ head
     padding-right: 3.6% !important;
     }
     .stack-column-row-center-image {
-    width: 49px !important;
+    width: 53px !important;
     }
     /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
     .center-on-narrow {
@@ -194,6 +194,10 @@ head
     height: 0 !important;
     }
 
+    .mobile-header {
+      padding-top:27px !important;
+    }
+
     .desktop-hidden {
     display: block !important;
     visibility: visible !important;
@@ -214,13 +218,51 @@ head
 
     }
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 600px) {
     .bg-cover {
-      background-size: cover !important;
+      background-size: contain !important;
+      background-position: center!important;
     }
+
+    .stack-column-center.mobile-item {
+      padding: 0 19px 15px 0!important;
+    }
+
+    .stack-column-center.mobile-last-item {
+      padding: 0 19px 29px 0!important;
+    }
+
+    .last-link {
+      text-align: center!important;
+      padding-top: 7px!important;
+    }
+
+    .footer-mobile-item {
+      padding: 13px 0px 33px !important;
+    }
+
+    .main-img {
+      padding: 178px 40px!important;
+    }
+
+    .main-header {
+      padding: 0px 20px 30px;
+    }
+
+
+    }
+
+    @media screen and (max-width: 345px) {
+      .main-header {
+        font-size: 25px !important;
+      }
+
+      .main-img {
+         padding: 138px 40px !important;
+      }
     }
   // Progressive Enhancements : END
-center(style='width: 100%; background-color: #F5F6FA;')
+center(style='width: 100%; background-color:#F9F5F2;')
   //if mso | IE
     table(role='presentation' border='0' cellpadding='0' cellspacing='0' width='100%' style='background-color: #F9F5F2;')
       tr
@@ -258,7 +300,7 @@ center(style='width: 100%; background-color: #F5F6FA;')
             // Email Header : END
             tr
               // Bulletproof Background Images c/o https://backgrounds.cm
-              td.no-border.bg-cover(valign='middle' style="border-left: 1px solid #E5E9F2;border-right: 1px solid #E5E9F2;text-align: center; background-image: url('https://marketing-image-production.s3.amazonaws.com/uploads/1035d8601a327ac9cbc08890ced2ac65c32c2b0ec7310c5d1778afb68a731435b5ff15d182ed2f623d3dcef4a4058d88f8c5ff5d5f72b214ea38880f3e1fbba7.png'); background-color: #ffffff; background-position: center !important;  background-size: contain ; background-repeat: no-repeat;")
+              td.no-border.bg-cover(valign='middle' style="border-left: 1px solid #E5E9F2;border-right: 1px solid #E5E9F2;text-align: center; background-image: url('img/cellphone.png'); background-color: #ffffff; background-position: center;  background-size: 100%; background-repeat: no-repeat;")
                 a(href='https://creditter.ru/' title='SmartCredit' target='_blank' style='text-decoration: none; color: #ffffff;')
 
                   //if gte mso 9
@@ -270,130 +312,91 @@ center(style='width: 100%; background-color: #F5F6FA;')
                     table(role='presentation' border='0' cellpadding='0' cellspacing='0' width='100%')
                       tbody
                         tr
-                          td(valign='middle' style='padding: 214px 40px;')
+                          td(class="main-img" valign='middle' style='padding: 230px 40px;')
                             a(href='https://creditter.ru/' title='SmartCredit' style='text-decoration: none; color: #ffffff;' target='_blank')
                   //if gte mso 9
             tr
               td.no-border(style='background-color: #ffffff;border-left: 1px solid #E5E9F2;border-right: 1px solid #E5E9F2;')
                 table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
                   tr
-                    td.padding-null(style="padding: 40px 30px 27px 30px; font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 25px; color: #17233B;")
-                      h2(style='margin: 0; font-size: 31px; line-height: 38px; text-align: center;')
-                        | Сегодня дата вашего обязательного платежа!
+                    td.padding-null(style="padding: 6px 30px 30px 30px; font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 25px; color: #17233B;")
+                      h2( class="main-header" style='margin: 0; font-size: 31px; line-height: 38px; text-align: center; padding: 0px 12px;')
+                        | Займ до 14 000 руб. за 5 минут
             tr
               td.no-border(style='padding: 10px; background-color: #ffffff; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2;')
                 table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
+
                   tr
                     // Column : BEGIN
-                    td.stack-column-center(valign='top' width='60%' style='padding: 10px 50px 20px 20px;')
-                      table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
-                        tr
-                          td.center-on-narrow(style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 22px; color: #17233B; text-align: left;")
-                            p(style='margin: 0; text-align: left;')
-                              | Вы можете внести платеж любым удобным для вас способом:
-                    // Column : END
-                  tr
-                    // Column : BEGIN
-                    td.stack-column-center(valign='top' width='60%' style='padding: 0 19px 19px 19px;')
+                    td.stack-column-center.mobile-item(valign='top' width='60%' style='padding: 0 19px 10px 19px;')
                       table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
                         tr
                           td.stack-column-row-center-image(width='10%' style='text-align: left;')
                             img(src='https://marketing-image-production.s3.amazonaws.com/uploads/7c3894c782fbdbdf37d5d86be2df436659ed89b7e3a77ddd1aeb58d967a0f615b49d2ea166c6aa288905e04c6ab70c1e351aabb682189caf4ef6531907d195d0.png' width='34' height='34' alt='' border='0' style='width: 100%; max-width: 34px; height: auto;')
-                          td.center-on-narrow(style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 22px; color: #17233B; text-align: left;")
+                          td.center-on-narrow(style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; color: #17233B; text-align: left;")
                             p(style='margin: 0; text-align: left;')
-                              | Переводом на расчетный счет компании Кредиттер
+                              | Екатерина, Вам доступен займ до  30 000 руб. на лучших условиях на сайте Creditter.ru
                     // Column : END
                   tr
                     // Column : BEGIN
-                    td.stack-column-center(valign='top' width='60%' style='padding: 0 19px 19px 19px;')
+                    td.stack-column-center(valign='top' width='60%' style='padding: 0 19px 15px 19px;')
                       table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
                         tr
                           td.stack-column-row-center-image(width='10%' style='text-align: left;')
                             img(src='https://marketing-image-production.s3.amazonaws.com/uploads/a4cd8bb36d06602f078b0f636ba9b7d6f88a7680002f0afcf2d2628d9142de4fc196a58b1106154e144af0b4a0f9fc74a9bcd59e0b0f7d585215d54090f50409.png' width='34' height='34' alt='' border='0' style='width: 100%; max-width: 34px; height: auto;')
                           td.center-on-narrow(style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; color: #17233B; text-align: left;")
-                            p(style='margin: 0; text-align: left;') Через платежные системы
+                            p(style='margin: 0; text-align: left;') Одобрение в 97% случаев!
                     // Column : END
                   tr
                     // Column : BEGIN
-                    td.stack-column-center(valign='top' width='60%' style='padding: 0 19px 8px 19px;')
+                    td.stack-column-center.mobile-last-item(valign='top' width='60%' style='padding: 0 19px 35px 19px;')
                       table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
                         tr
                           td.stack-column-row-center-image(width='10%' style='text-align: left;')
                             img(src='https://marketing-image-production.s3.amazonaws.com/uploads/f636e65464df2b3f0324b66367bdfcb409295782d43f5e2a7c9dea4cb54bc2380f98c8d4389a32bba880e2ee6f66d24e68097b1f657254394b8740fe77804e12.png' width='34' height='34' alt='' border='0' style='width: 100%; max-width: 34px; height: auto;')
                           td.center-on-narrow(style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; color: #17233B; text-align: left;")
-                            p(style='margin: 0; text-align: left;') Оплатой с вашей банковской карты
+                            p(style='margin: 0; text-align: left;') Оформите займ за 5 минут
                     // Column : END
             // 2 Even Columns : END
             tr
-              td.no-border.stack-column-row-center-small(style='background: #ffffff; padding: 0 75px 44px; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2; ')
+              td.no-border.stack-column-row-center-small(style='background: #ffffff; padding: 0px 168px 0px; border-left: 1px solid #E5E9F2;text-align: center; border-right: 1px solid #E5E9F2; ')
                 // Button : BEGIN
 
-                div( class="column stack-column-center" style="padding-bottom: 9px; width:100%;max-width:162px;display:inline-block;vertical-align:top;")
+                div( class="" style="padding-bottom: 9px; width:100%;max-width:222px;display:inline-block;vertical-align:top;")
                   table(width='100%' cellpadding='0' cellspacing='0' style='border-spacing:0;')
                     tr
                       td.button-td.button-td-primary(style='border-radius: 6px; background: #FF4E2C;')
-                        a.button-a.button-a-primary(href='http://smcr.me/pay/p/1tz8i1sm' style="background: #FF4E2C; border: 1px solid #FF4E2C; font-family: 'Helvetica', sans-serif; font-size: 14px; line-height: 24px; font-weight: normal; text-decoration: none; padding: 19px 26px 18px; color: #ffffff; display: block; border-radius: 4px; text-align: center;")
-                          | Продлить&nbsp;займ
+                        a.button-a.button-a-primary(href='http://smcr.me/pay/p/1tz8i1sm' style="background: #FF4E2C; border: 1px solid #FF4E2C; font-family: 'Helvetica', sans-serif; font-size: 16px; line-height: 18px; font-weight: normal; text-decoration: none; padding: 19px 26px 18px; color: #ffffff; display: block; border-radius: 4px; text-align: center;")
+                          | Получить&nbsp;деньги
 
-                div( class="column stack-column-center" style="width:100%;max-width:227px;display:inline-block;vertical-align:top;")
-                  table(width='100%' cellpadding='0' cellspacing='0' style='border-spacing:0;')
-                    tr
-                      td.button-td.button-td-white(style='border-radius: 4px; background: #ffffff; ')
-                        a.button-a.button-a-white(href='http://smcr.me/pay/f/1tz8i1sm' style="background: #ffffff; border: 1px solid #FF4E2C; font-family: 'Helvetica', sans-serif; font-size: 14px; line-height: 24px; font-weight: normal; text-decoration: none; padding: 19px 26px 18px; color: #FF4E2C; display: block; border-radius: 4px; text-align: center;")
-                          | Оплатить&nbsp;задолженность
+
 
                 // Button : END
 
             // 1 TextBlock : BEGIN
             tr
-              td.no-border(style='background: #ffffff; padding: 0 30px 33px; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2;')
-                table(align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' style='margin: auto;')
+            td.no-border.stack-column-row-center-small(style='background: #ffffff; padding: 0 66px 28px; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2; ')
+              // Button : BEGIN
+
+              div( class="column stack-column-center" style="padding-bottom: 9px; width:100%;display:inline-block;vertical-align:top;")
+                table(width='100%' cellpadding='0' cellspacing='0' style='border-spacing:0;')
                   tr
-                    td(style="font-size: 18px; line-height: 24px; text-align: center; color: #17233B; font-family: 'Helvetica', sans-serif;  font-weight: bold;  padding: 0px 26px 0px;  display: block; ")
-                      | Пожалуйста, не допускайте просрочки
-                  tr
-                    td(style="font-size: 15px; line-height: 24px; text-align: left; color: #17233B; font-family: 'Helvetica', sans-serif;  font-weight: normal;  padding: 14px 0 0;  display: block; ")
-                      | В случае просрочки платежа данные будут переданы в кредитное бюро, а также вам необходимо будет заплатить неустойку в соответствии с действующим законодательством
-            // 1 TextBlock : END
-            // 2 TextBlock : BEGIN
-            tr
-              td.no-border(style='background: #ffffff; padding: 0 30px 48px; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2; border-bottom: 1px solid #E5E9F2; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;')
-                table(align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' style='margin: auto;')
-                  tr
-                    td(style="font-size: 18px; line-height: 24px; text-align: center; color: #17233B; font-family: 'Helvetica', sans-serif;  font-weight: bold;  padding: 0px 26px 0px;  display: block; ")
-                      | Контактная информация
-                  tr
-                    td(style="font-size: 15px; line-height: 24px; text-align: left; color: #17233B; font-family: 'Helvetica', sans-serif;  font-weight: normal;  padding: 14px 0 0;  display: block; ")
-                      | Если у вас возникают вопросы о погашении задолженности и способах оплаты, вы можете позвонить по телефону горячей линии:<br> <a style="color: #17233B; font-weight: bold; " href="tel:+74959959560"> 8 (495) 995-95-60</a>
-            // 2 TextBlock : END
+                    td(style='width: 100%;')
+                      p( style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; font-weight: normal; text-decoration: none; color: #17233B;")
+                        | Вы получили этот e-mail по рекомендации от Вашего друга.
+
+
+
+
+
           // Email Body : END
   // Email Footer : BEGIN
   table.email-container(align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' width='600' style='margin: auto;')
     tbody
       tr
-        td(style='padding: 23px 10px 0;')
-          div( class="column " style="padding-bottom: 15px; width:100%;max-width:391px;display:inline-block;vertical-align:top;")
+        td(style='padding: 14px 7px 0 14px;')
 
-            table(border='0' cellpadding='0' cellspacing='0' width='100%' margin="auto")
-              tbody
-                tr
-                  td(style='padding: 0 0 0 11px;')
-                    h2(style="margin: 0; font-family: 'Helvetica', sans-serif; font-size: 12px; line-height: 18px; letter-spacing: 0.1px; color: #17233B;")
-                      | Банковские реквизиты
-                    p(style="margin: 0; font-family: 'Helvetica', sans-serif; font-size: 12px; line-height: 18px; letter-spacing: 0.1px;color: #17233B;")
-                      |  ООО Микрокредитная компания «Кредиттер»
-                      br
-                      |  ИНН: 7702463482, КПП: 770201001
-                      br
-                      |  ОГРН: 1197746100530
-                      br
-                      |  р/с 40701810702370000034
-                      br
-                      |  в АО «АЛЬФА-БАНК» г. Москва,
-                      br
-                      |  к/с 30101810200000000593
-                      br
-                      |  БИК 044525593
+
           div( class="" style="width:100%;max-width:162px;display:inline-block;vertical-align:top;")
             table
               tbody
@@ -403,26 +406,23 @@ center(style='width: 100%; background-color: #F5F6FA;')
                       | Скачайте наше приложение
                     a(style="padding-right: 41px;" href='https://play.google.com/store/apps/details?id=com.team.noty.smartcredit')
                       img(src='https://marketing-image-production.s3.amazonaws.com/uploads/378ae9c8a73bf5133eb8d8a0685c1a64099cf14923e8b0fd8f78770e791455fc73c15178856f27057f9b8d87462a0e57f731b21af9cc1b16281313a11c54727b.png' width='135' height='40')
+          div( class="column " style="padding-bottom: 15px; width:100%;max-width:402px;display:inline-block;vertical-align:top;")
 
-
-  hr(style="opacity: 0.2;")
-
-  table
-    tbody
-      tr
-        td(style="padding: 16px 30px 33px; font-family: 'Helvetica', sans-serif; font-size: 12px; line-height: 18px; text-align: center; color: #17233B;")
-          p(style='margin: 0;')
-            | Если у вас есть вопросы, будем рады вам помочь!
-            br
-            | Звоните:
-            a(href='tel:+74959959560' style='color:#FF4E2C;text-decoration: none;padding-top: 5px; padding-bottom: 5px; display: inline-block;') +7 495 995-95-60
-            |  , пишите:
-            a(style='color:#FF4E2C;text-decoration: none;' href='mailto:info@creditter.ru') info@creditter.ru
-            br
-            b Работаем круглосуточно!
-          p(style='margin: 0; padding-top: 16px;')
-            | Вы можете <a style='color:#FF4E2C;text-decoration: none;' href="https://creditter.ru">отписаться от рассылки</a> в настройках профиля.
-
+            table(border='0' cellpadding='0' cellspacing='0' width='100%' margin="auto")
+              tbody
+                tr
+                  td( class="footer-mobile-item" style="padding: 1px 0px 33px 61px; font-family: 'Helvetica', sans-serif; font-size: 12px; line-height: 18px; text-align: left; color: #17233B;")
+                    p(style='margin: 0;')
+                      span(style="font-weight:bold; display: block; margin-bottom: -4px")
+                        | Если у вас есть вопросы, будем рады вам помочь!
+                      | Звоните:
+                      a(href='tel:+74959959560' style='color:#17233B;text-decoration: none;padding-top: 5px; padding-bottom: 5px; display: inline-block;') +7 495 995-95-60
+                      |  , пишите:
+                      a(style='color:#17233B;text-decoration: none;' href='mailto:info@creditter.ru') info@creditter.ru
+                      br
+                      b Работаем круглосуточно!
+                    p(style='margin: 0; padding-top: 16px;')
+                      | Вы можете <a style='color:#FF4E2C;text-decoration: none;' href="https://creditter.ru">отписаться от рассылки</a> в настройках профиля.
   // Email Footer : END
   // Email Footer Second : BEGIN
 

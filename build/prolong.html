@@ -1,113 +1,468 @@
 <!DOCTYPE html>
-<html lang="ru">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Creditter </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preload" href="fonts/HelveticaRegular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/HelveticaItalic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/HelveticaBold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.min.css">
+  <meta charset="utf-8"><!-- utf-8 works for most cases-->
+  <meta name="viewport" content="width=device-width"><!-- Forcing initial-scale shouldn't be necessary-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- Use the latest (edge) version of IE rendering engine-->
+  <meta name="x-apple-disable-message-reformatting"><!-- Disable auto-scale in iOS 10 Mail entirely-->
+  <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no"><!-- Tell iOS not to automatically link certain text strings.-->
+  <title></title><!-- The title tag shows in email notifications, like Android 4.4.-->
+  <!-- CSS Reset : BEGIN-->
+  <style>
+    /* What it does: Remove spaces around the email design added by some email clients. */
+    /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+    html,
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+    /* What it does: Stops email clients resizing small text. */
+    * {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* What it does: Centers email on Android 4.4 */
+    div[style*="margin: 16px 0"] {
+      margin: 0 !important;
+    }
+
+    /* What it does: Stops Outlook from adding extra spacing to tables. */
+    table,
+    td {
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+    }
+
+    /* What it does: Fixes webkit padding issue. */
+    table {
+      border-spacing: 0 !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      margin: 0 auto !important;
+    }
+
+    /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+    a {
+      text-decoration: none;
+    }
+
+    /* What it does: Uses a better rendering method when resizing images in IE. */
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    /* What it does: A work-around for email clients meddling in triggered links. */
+    a[x-apple-data-detectors],
+    /* iOS */
+    .unstyle-auto-detected-links a,
+    .aBn {
+      border-bottom: 0 !important;
+      cursor: default !important;
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: 'Helvetica', inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+    .im {
+      color: inherit !important;
+    }
+
+    /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+    .a6S {
+      display: none !important;
+      opacity: 0.01 !important;
+    }
+
+    /* If the above doesn't work, add a .g-img class to any image in question. */
+    img.g-img+div {
+      display: none !important;
+    }
+
+    /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+    /* Create one of these media queries for each additional viewport size you'd like to fix */
+    /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+    @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+      u~div .email-container {
+        min-width: 320px !important;
+      }
+    }
+
+    /* iPhone 6, 6S, 7, 8, and X */
+    @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+      u~div .email-container {
+        min-width: 375px !important;
+      }
+    }
+
+    /* iPhone 6+, 7+, and 8+ */
+    @media only screen and (min-device-width: 414px) {
+      u~div .email-container {
+        min-width: 414px !important;
+      }
+    }
+  </style><!-- What it does: Makes background images in 72ppi Outlook render at correct size.-->
+  <!--if gte mso 9xml
+  o:officedocumentsettings
+    o:allowpng
+      o:pixelsperinch 96-->
+  <!-- CSS Reset : END-->
+  <!-- Progressive Enhancements : BEGIN-->
+  <style>
+    /* What it does: Hover styles for buttons */
+    .button-td,
+    .button-a {
+      transition: all 100ms ease-in;
+    }
+
+    .button-td-primary:hover,
+    .button-a-primary:hover {
+      background: #ffffff !important;
+      border-color: #ff2f1b !important;
+      color: #ff2f1b !important;
+    }
+
+    .button-td-white:hover,
+    .button-a-white:hover {
+      background: #FF4E2C !important;
+      border-color: #FF4E2C !important;
+      color: #ffffff !important;
+    }
+
+    .desktop-hidden {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 600px) {
+      .email-container {
+        width: 100% !important;
+        margin: auto !important;
+      }
+
+      /* What it does: Forces table cells into full-width rows. */
+      .stack-column,
+      .stack-column-center {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        direction: ltr !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      /* And center justify these ones. */
+      .stack-column-center {
+        text-align: center !important;
+      }
+
+      .stack-column-row-center {
+        width: 80% !important;
+        margin: 0 auto !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+
+      .stack-column-row-center-small {
+        display: block !important;
+        width: 92% !important;
+        max-width: 92% !important;
+        direction: ltr !important;
+        padding-left: 4% !important;
+        padding-right: 3.6% !important;
+      }
+
+      .stack-column-row-center-image {
+        width: 49px !important;
+      }
+
+      /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+      .center-on-narrow {
+        text-align: center !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+      }
+
+      table.center-on-narrow {
+        display: inline-block !important;
+      }
+
+      .mobile-center {
+        text-align: center !important;
+        margin: 0 auto !important;
+      }
+
+      .mobile-hidden {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+      }
+
+      .desktop-hidden {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+      }
+
+      .padding-null {
+        padding: 0 !important;
+      }
+
+      .no-border {
+        border-left: 0 !important;
+        border-top: 0 !important;
+        border-right: 0 !important;
+        box-shadow: none !important;
+        ;
+      }
+
+    }
+
+    @media screen and (max-width: 400px) {
+      .bg-cover {
+        background-position: 40% !important;
+        background-size: 125% !important;
+      }
+    }
+  </style><!-- Progressive Enhancements : END-->
 </head>
-
-<body>
-  <header class="header-cover">
-    <div class="header"><a class="header__logo" href=""><svg width="158" height="44" aria-hidden="true">
-          <use xlink:href="img/sprite.svg#logo"></use>
-        </svg><svg width="46" height="44" aria-hidden="true">
-          <use xlink:href="img/sprite.svg#logo-mobile"></use>
-        </svg></a>
-      <nav>
-        <ul>
-          <li><a>Взять деньги</a></li>
-          <li><a>Поддержка</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <section class="mail">
-      <picture>
-        <source srcset="img/calendar.png" media="(min-width: 561px)"><img class="prolong" src="img/calendar-mobile.png" width="509"></picture>
-      <h1 class="prolong">Возможность<br> пролонгации займа!</h1>
-        <p class="mail__text prolong">Если вы не располагаете денежными средствами для погашения задолженности перед компанией ООО МКК «Кредиттер» в полном объеме, у вас есть возможность оформить пролонгацию</p>
-        <div class="mail__links"><a class="red-btn">Продлить займ</a><a class="white-btn">Оплатить задолженность</a></div>
-        <ul class="mail__list prolong">
-          <li>Пролонгация - продление срока возврата займа.<svg width="34" height="34" viewbox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 17C1 8.16243 8.16249 1 17.0001 1C24.1195 1 29.0587 5.69565 32.2281 12.0776" stroke="#FF4E2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M27.4344 12.1303H32.9996V6.62354" stroke="#FF4E2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M32.9999 17C32.9999 25.8376 25.8375 33.0001 16.9998 33.0001C9.88046 33.0001 4.94129 28.3044 1.77187 21.9225" stroke="#FF4E2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M6.56526 21.8694H1V27.3762" stroke="#FF4E2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M23.2604 17.0001C23.2604 20.4575 20.4569 23.261 16.9995 23.261C13.542 23.261 10.7385 20.4575 10.7385 17.0001C10.7385 13.5427 13.542 10.7393 16.9995 10.7393C20.4569 10.7393 23.2604 13.5427 23.2604 17.0001Z" stroke="#17233B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg><svg width="8" height="32" aria-hidden="true">
-              <use xlink:href="img/sprite.svg#arrow"></use>
-            </svg></li>
-          <li>Вы можете воспользоваться пролонгацией в вашем личном кабинете.<svg width="34" height="34" viewbox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M33 30.0909C33 31.6982 31.6982 33 30.0909 33H3.90909C2.30182 33 1 31.6982 1 30.0909V3.90909C1 2.30182 2.30182 1 3.90909 1H30.0909C31.6982 1 33 2.30182 33 3.90909V30.0909V30.0909Z" stroke="#FF4E2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M1 6.81812H33" stroke="#FF4E2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M4.63683 3.90916C4.63683 4.31061 4.31102 4.63643 3.90956 4.63643C3.50811 4.63643 3.18229 4.31061 3.18229 3.90916C3.18229 3.5077 3.50811 3.18188 3.90956 3.18188C4.31102 3.18188 4.63683 3.5077 4.63683 3.90916Z" fill="#FF4E2C"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.54517 3.90916C7.54517 4.31061 7.21935 4.63643 6.81789 4.63643C6.41644 4.63643 6.09062 4.31061 6.09062 3.90916C6.09062 3.5077 6.41644 3.18188 6.81789 3.18188C7.21935 3.18188 7.54517 3.5077 7.54517 3.90916Z" fill="#FF4E2C"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4545 3.90916C10.4545 4.31061 10.1287 4.63643 9.72727 4.63643C9.32582 4.63643 9 4.31061 9 3.90916C9 3.5077 9.32582 3.18188 9.72727 3.18188C10.1287 3.18188 10.4545 3.5077 10.4545 3.90916Z" fill="#FF4E2C"></path>
-              <line x1="10.0975" y1="26.4382" x2="28.0758" y2="26.4382" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="5.22813" y1="26.4382" x2="6.51074" y2="26.4382" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="10.0975" y1="11.8293" x2="28.0758" y2="11.8293" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="5.22813" y1="11.8293" x2="6.51074" y2="11.8293" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="10.0975" y1="16.699" x2="28.0758" y2="16.699" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="5.22813" y1="16.699" x2="6.51074" y2="16.699" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="10.0975" y1="21.5686" x2="28.0758" y2="21.5686" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-              <line x1="5.22813" y1="21.5686" x2="6.51074" y2="21.5686" stroke="#17233B" stroke-width="1.5" stroke-linecap="round"></line>
-            </svg><svg width="8" height="32" aria-hidden="true">
-              <use xlink:href="img/sprite.svg#arrow"></use>
-            </svg></li>
-          <li>Для этого вам нужно оплатить минимальную сумму процентов за пользование займом (не позднее даты по оплате задолженности) и продлить срок займа.<svg width="34" height="33" viewbox="0 0 34 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M28.8264 20.3293C28.8264 21.0973 28.2031 21.7206 27.4351 21.7206C26.6671 21.7206 26.0438 21.0973 26.0438 20.3293C26.0438 19.5613 26.6671 18.938 27.4351 18.938C28.2031 18.938 28.8264 19.5613 28.8264 20.3293V20.3293Z" stroke="#FF4E2C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M27.4341 24.503H32.9993V16.1553H27.4341C25.1288 16.1553 23.2603 18.0238 23.2603 20.3292C23.2603 22.6345 25.1288 24.503 27.4341 24.503V24.503Z" stroke="#FF4E2C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M1 13.3727V11.9814C1 8.14001 4.11511 5.0249 7.95648 5.0249H12.826" stroke="#FF4E2C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M33.0003 13.3727V11.9814C33.0003 8.14001 29.8852 5.0249 26.0438 5.0249" stroke="#FF4E2C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M5.17346 9.19902L19.4718 1.49959C21.5448 0.383775 24.1313 1.20186 25.1845 3.30828L28.1298 9.19902" stroke="#17233B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M15.0126 9.19897L25.3485 3.63379" stroke="#17233B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M28.8259 9.19922H5.17389C2.86851 9.19922 1 11.0677 1 13.3731V27.2861C1 29.5914 2.86851 31.4599 5.17389 31.4599H28.8259C31.1313 31.4599 32.9998 29.5914 32.9998 27.2861V13.3731C32.9998 11.0677 31.1313 9.19922 28.8259 9.19922V9.19922Z" stroke="#FF4E2C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg><svg width="8" height="83" aria-hidden="true">
-              <use xlink:href="img/sprite.svg#arrow-long"></use>
-            </svg><svg width="8" height="32" aria-hidden="true">
-              <use xlink:href="img/sprite.svg#arrow"></use>
-            </svg></li>
-          <li>Процентная ставка за использование займом останется прежней.<svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="16" cy="16" r="15.25" stroke="#FF4E2C" stroke-width="1.5"></circle>
-              <path d="M21.792 10.6768L11.1435 21.3251" stroke="#17233B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1381 12.0083C14.4031 12.7433 13.2101 12.7433 12.4751 12.0083C11.7401 11.2733 11.7401 10.0803 12.4751 9.34538C13.2101 8.61041 14.4031 8.61041 15.1381 9.34538C15.873 10.0803 15.873 11.2733 15.1381 12.0083V12.0083Z" stroke="#17233B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.461 22.6574C19.726 23.3924 18.533 23.3924 17.798 22.6574C17.063 21.9224 17.063 20.7294 17.798 19.9944C18.533 19.2594 19.726 19.2594 20.461 19.9944C21.1959 20.7294 21.1959 21.9224 20.461 22.6574V22.6574Z" stroke="#17233B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg><svg width="8" height="32" aria-hidden="true">
-              <use xlink:href="img/sprite.svg#arrow"></use>
-            </svg></li>
-        </ul>
-        <div class="mail__block">
-          <p>Точную информацию о сумме минимального платежа и способах оплаты, вы можете позвонить по телефону горячей линии:<br> <a href="tel:+74959959560"> 8 (495) 995-95-60</a></p>
-        </div>
-    </section>
-    <section class="bank">
-      <div class="bank__account">
-        <h2>Банковские реквизиты</h2>
-        <p>ООО Микрокредитная компания "Кредиттер"</p>
-        <p>ИНН: 7702463482, КПП: 770201001</p>
-        <p>ОГРН: 1197746100530</p>
-        <p>р/с 40701810702370000034</p>
-        <p>в АО «АЛЬФА-БАНК» г. Москва,</p>
-        <p>к/с 30101810200000000593</p>
-        <p>БИК 044525593</p>
-      </div>
-      <div class="bank__app">
-        <h2>Скачайте наше приложение</h2><img src="img/googleplay.png" width="135" height="40">
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <p>Если у вас есть вопросы, будем рады вам помочь!</p>
-    <p>Звоните <a href="tel:+74959959560"> +7 495 995-95-60</a>, пишите: <a href="mailto:info@creditter.ru">info@creditter.ru</a></p>
-    <p>Работаем круглосуточно!</p>
-    <p>Вы можете <a href="">отписаться от рассылки</a> в настройках профиля.</p>
-  </footer>
-</body>
-
-</html>
+<center style="width: 100%; background-color: #F5F6FA;">
+  <!--if mso | IEtable(role='presentation' border='0' cellpadding='0' cellspacing='0' width='100%' style='background-color: #F9F5F2;')
+  tr
+    td-->
+  <!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary.-->
+  <!-- Email Body : BEGIN-->
+  <table class="email-container" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: auto;">
+    <!-- Email Body : BEGIN-->
+    <tbody>
+      <tr>
+        <td class="padding-null" style="padding: 44px 10px 0;">
+          <table class="no-border email-container" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="560" style="margin: auto;border-radius:4px;box-shadow: 0px 2px 4px #EDEFF5;">
+            <!-- Email Header : BEGIN-->
+            <tr>
+              <td class="no-border" style="background-color: #ffffff; padding: 13px 30px; border: 1px solid #E5E9F2;border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom: 1px solid #E5E6EB;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+                    <tr>
+                      <td style="padding-right: 10px;" valign="bottom" align="left"><a class="mobile-hidden" href="https://creditter.ru/" title="SmartCredit" target="_blank" style="text-decoration: none; color: #ffffff;"><img width="130" src="http://cdn.mcauto-images-production.sendgrid.net/14d98ed5a0f1b1cd/9c95f0fe-a920-4abc-a7ec-dcdb6a608aca/1280x370.png" alt="Creditter" style="border: 0; max-width: 150px; vertical-align: middle; width: 100%;"></a><a class="desktop-hidden" href="https://creditter.ru/" title="SmartCredit" target="_blank" style="text-decoration: none; color: #ffffff; width: 46px;"><img width="46" src="https://marketing-image-production.s3.amazonaws.com/uploads/ca6ae5416c5ac4e4997712dc6711283189cf9e67ddc800e2752b438849db87daf20e91b44ec00839e339759b7399949f2e1d4c5279f7c3734c274ea8464e2be6.png" alt="Creditter" style="border: 0; max-width: 46px; vertical-align: middle; width: 100%;"></a></td>
+                      <td width="70%" valign="bottom" align="right" padding-bottom="11px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td class="mobile-hidden" style="padding: 8px 0px; width: 70px; white-space: nowrap;" align="right"></td>
+                              <td style="padding: 8px 0px; width: 70px; white-space: nowrap;" align="right"><a href="https://creditter.ru/" style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 18px; color: #17233B;">Взять деньги</a></td>
+                              <td style="padding: 0 0 0 18px; width: 70px; white-space: nowrap;" align="right"><a href="https://creditter.ru/" style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 18px; color: #17233B;">Поддержка</a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr><!-- Email Header : END-->
+            <tr>
+              <!-- Bulletproof Background Images c/o https://backgrounds.cm-->
+              <td class="no-border padding-null" style="padding-right: 30px;border-left: 1px solid #E5E9F2;border-right: 1px solid #E5E9F2; text-align: center;background-color: #ffffff;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+                    <tr>
+                      <td class="bg-cover" valign="middle" style=" background-image: url('https://marketing-image-production.s3.amazonaws.com/uploads/91b5b3823932fbf5dfdcc5925335501d9378a31f7afde578ef44da1f72854ef65ab2505a38b4cd760880bc4fdcfcfd13b984f7ed7fc651de651c1d22e8c8aade.png'); background-color: #ffffff; background-position: center !important;  background-size: contain; background-repeat: no-repeat;"><a href="https://creditter.ru/" title="SmartCredit" target="_blank" style="text-decoration: none; color: #ffffff;">
+                          <!--if gte mso 9v:rect(xmlns:v='urn:schemas-microsoft-com:vml' fill='true' stroke='false' style='width:600px;height:175px; background-position: center center !important;')
+  v:fill(type='tile' src='https://marketing-image-production.s3.amazonaws.com/uploads/91b5b3823932fbf5dfdcc5925335501d9378a31f7afde578ef44da1f72854ef65ab2505a38b4cd760880bc4fdcfcfd13b984f7ed7fc651de651c1d22e8c8aade.png' color='#222222')
+    v:textbox(inset='0,0,0,0')-->
+                          <div>
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td valign="middle" style="padding: 214px 40px;"><a href="https://creditter.ru/" title="SmartCredit" style="text-decoration: none; color: #ffffff;" target="_blank"></a></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <!--if gte mso 9-->
+                        </a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="no-border" style="background-color: #ffffff;border-left: 1px solid #E5E9F2;border-right: 1px solid #E5E9F2;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <td class="padding-null" style="padding: 40px 30px 27px 30px; font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 25px; color: #17233B;">
+                      <h2 style="margin: 0; font-size: 31px; line-height: 38px; text-align: center;">Возможность<br> пролонгации займа!</h2>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="no-border" style="padding: 10px; background-color: #ffffff; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <!-- Column : BEGIN-->
+                    <td class="stack-column-center" valign="top" width="60%" style="padding: 10px 50px 20px 20px;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                          <td class="center-on-narrow" style="font-family: 'Helvetica', sans-serif; font-size: 18px; text-align: center; line-height: 24px; color: #17233B; text-align: left; font-weight: bold;">
+                            <p style="margin: 0; text-align: center;">Если вы не располагаете денежными средствами для погашения задолженности перед компанией ООО МКК «Кредиттер» в полном объеме, у вас есть возможность оформить пролонгацию</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td><!-- Column : END-->
+                  </tr>
+                </table>
+              </td>
+            </tr><!-- 2 Even Columns : END-->
+            <tr>
+              <td class="no-border stack-column-row-center-small" style="background: #ffffff; padding: 0 75px 44px; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2; ">
+                <!-- Button : BEGIN-->
+                <div class="column stack-column-center" style="padding-bottom: 9px; width:100%;max-width:162px;display:inline-block;vertical-align:top;">
+                  <table width="100%" cellpadding="0" cellspacing="0" style="border-spacing:0;">
+                    <tr>
+                      <td class="button-td button-td-primary" style="border-radius: 6px; background: #FF4E2C;"><a class="button-a button-a-primary" href="http://smcr.me/pay/p/1tz8i1sm" style="background: #FF4E2C; border: 1px solid #FF4E2C; font-family: 'Helvetica', sans-serif; font-size: 14px; line-height: 24px; font-weight: normal; text-decoration: none; padding: 19px 26px 18px; color: #ffffff; display: block; border-radius: 4px; text-align: center;">Продлить&nbsp;займ</a></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="column stack-column-center" style="width:100%;max-width:227px;display:inline-block;vertical-align:top;">
+                  <table width="100%" cellpadding="0" cellspacing="0" style="border-spacing:0;">
+                    <tr>
+                      <td class="button-td button-td-white" style="border-radius: 4px; background: #ffffff; "><a class="button-a button-a-white" href="http://smcr.me/pay/f/1tz8i1sm" style="background: #ffffff; border: 1px solid #FF4E2C; font-family: 'Helvetica', sans-serif; font-size: 14px; line-height: 24px; font-weight: normal; text-decoration: none; padding: 19px 26px 18px; color: #FF4E2C; display: block; border-radius: 4px; text-align: center;">Оплатить&nbsp;задолженность</a></td>
+                    </tr>
+                  </table>
+                </div><!-- Button : END-->
+              </td>
+            </tr>
+            <tr>
+              <td class="no-border" style="padding: 10px; background-color: #ffffff; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <!-- Column : BEGIN-->
+                    <td class="stack-column-center" valign="top" width="60%" style="padding: 0 19px 19px 19px;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                          <td class="stack-column-row-center-image" width="10%" style="text-align: left;"><img src="https://marketing-image-production.s3.amazonaws.com/uploads/c73512b11118d2f8dd8a28761dedf0cf814c10113739a8b67dde4f20fd670a91c933a3c9d4678f02f1ca7a201130ef9b710ed445d6d6d15c13afba850d83eb3e.png" width="34" height="34" alt="" border="0" style="width: 100%; max-width: 34px; height: auto;"></td>
+                          <td class="center-on-narrow" style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 22px; color: #17233B; text-align: left; display: inline-block; padding-top: 10px;">
+                            <p style="margin: 0; text-align: left;">Пролонгация - продление срока возврата займа.</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td><!-- Column : END-->
+                  </tr>
+                  <tr>
+                    <!-- Column : BEGIN-->
+                    <td class="stack-column-center" valign="top" width="60%" style="padding: 0 19px 19px 19px;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                          <td class="stack-column-row-center-image" width="10%" style="text-align: left;"><img src="https://marketing-image-production.s3.amazonaws.com/uploads/1789c18b26372a06802f980d7d724bd335044c0b9a03943aa75d192d3df7a9e6935dfa998dbce83fd13a3f8bee1529999beeff611073532dc7dd8d19571e88f1.png" width="34" height="34" alt="" border="0" style="width: 100%; max-width: 34px; height: auto;"></td>
+                          <td class="center-on-narrow" style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; color: #17233B; text-align: left; display: inline-block;">
+                            <p style="margin: 0; text-align: left;">Вы можете воспользоваться пролонгацией в вашем личном кабинете.</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td><!-- Column : END-->
+                  </tr>
+                  <tr>
+                    <!-- Column : BEGIN-->
+                    <td class="stack-column-center" valign="top" width="60%" style="padding: 0 19px 19px 19px;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                          <td class="stack-column-row-center-image" width="10%" style="text-align: left;"><img class="mobile-hidden" src="https://marketing-image-production.s3.amazonaws.com/uploads/574fd8b8a697d7ccb26d5a094c475eacf426cbd4e092ec3c3808621c9d01451a6ad7c7a954b2bfb2b8a968f36751cf43bd2848e35687a6a4c4e0ec47053701f7.png" width="34" height="34" alt="" border="0" style="width: 100%; max-width: 34px; height: auto;"><img class="desktop-hidden" src="https://marketing-image-production.s3.amazonaws.com/uploads/5918e4aef0fca8bfdc06b39e7e6f402992c9240a39e6af0b235008c91218bb82869793f38462dc8134ca236ca5f977c1102b31f34e3f047afa1ef7346f692651.png" width="34" height="34" alt="" border="0" style="width: 100%; max-width: 34px; height: auto;"></td>
+                          <td class="center-on-narrow" style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; color: #17233B; text-align: left; display: inline-block;">
+                            <p style="margin: 0; text-align: left;">Для этого вам нужно оплатить минимальную сумму процентов за пользование займом (не позднее даты по оплате задолженности) и продлить срок займ</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td><!-- Column : END-->
+                  </tr>
+                  <tr>
+                    <!-- Column : BEGIN-->
+                    <td class="stack-column-center" valign="top" width="60%" style="padding: 0 19px 19px 19px;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                          <td class="stack-column-row-center-image" width="10%" style="text-align: left;"><img src="https://marketing-image-production.s3.amazonaws.com/uploads/d2ccf834f84fe9d3bc410606cf6973edfd7caf4de42b539dc5c1b163b725826af27c9439926c9e2be5856860e966cf01e7705bb51aebdbf1cd789ff6dc535505.png" width="34" height="34" alt="" border="0" style="width: 100%; max-width: 34px; height: auto;"></td>
+                          <td class="center-on-narrow" style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; color: #17233B; text-align: left; display: inline-block; padding-top: 10px;">
+                            <p style="margin: 0; text-align: left;">Процентная ставка за использование займом останется прежней.</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td><!-- Column : END-->
+                  </tr>
+                </table>
+              </td>
+            </tr><!-- 2 TextBlock : BEGIN-->
+            <tr>
+              <td class="no-border" style="background: #ffffff; padding: 0 30px 48px; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2; border-bottom: 1px solid #E5E9F2; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;">
+                <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: auto;">
+                  <tr>
+                    <td style="font-size: 15px; line-height: 24px; text-align: left; color: #17233B; font-family: 'Helvetica', sans-serif;  font-weight: normal;  padding: 14px 0 0;  display: block; ">Точную информацию о сумме минимального платежа и способах оплаты, вы можете позвонить по телефону горячей линии:<br> <a style="color: #17233B; font-weight: bold; " href="tel:+74959959560"> 8 (495) 995-95-60</a></td>
+                  </tr>
+                </table>
+              </td>
+            </tr><!-- 2 TextBlock : END-->
+          </table><!-- Email Body : END-->
+        </td>
+      </tr>
+    </tbody>
+  </table><!-- Email Footer : BEGIN-->
+  <table class="email-container" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: auto;">
+    <tbody>
+      <tr>
+        <td style="padding: 23px 10px 0;">
+          <div class="column " style="padding-bottom: 15px; width:100%;max-width:391px;display:inline-block;vertical-align:top;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" margin="auto">
+              <tbody>
+                <tr>
+                  <td style="padding: 0 0 0 11px;">
+                    <h2 style="margin: 0; font-family: 'Helvetica', sans-serif; font-size: 12px; line-height: 18px; letter-spacing: 0.1px; color: #17233B;">Банковские реквизиты</h2>
+                    <p style="margin: 0; font-family: 'Helvetica', sans-serif; font-size: 12px; line-height: 18px; letter-spacing: 0.1px; color: #17233B;"> ООО Микрокредитная компания «Кредиттер»<br> ИНН: 7702463482, КПП: 770201001<br> ОГРН: 1197746100530<br> р/с 40701810702370000034<br> в АО «АЛЬФА-БАНК» г. Москва,<br> к/с 30101810200000000593<br> БИК 044525593</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="width:100%;max-width:162px;display:inline-block;vertical-align:top;">
+            <table>
+              <tbody>
+                <tr>
+                  <td style="text-align: right;  width: 182px; display: block; ">
+                    <h3 style="margin: 0; font-family: 'Helvetica', sans-serif; color: #17233B; font-size: 12px; line-height: 18px; letter-spacing: 0.1px; padding-right: 9px; padding-bottom: 10px;">Скачайте наше приложение</h3><a style="padding-right: 41px;" href="https://play.google.com/store/apps/details?id=com.team.noty.smartcredit"><img src="https://marketing-image-production.s3.amazonaws.com/uploads/378ae9c8a73bf5133eb8d8a0685c1a64099cf14923e8b0fd8f78770e791455fc73c15178856f27057f9b8d87462a0e57f731b21af9cc1b16281313a11c54727b.png" width="135" height="40"></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr style="opacity: 0.2;">
+  <table>
+    <tbody>
+      <tr>
+        <td style="padding: 16px 30px 33px; font-family: 'Helvetica', sans-serif; font-size: 12px; line-height: 18px; text-align: center; color: #17233B;">
+          <p style="margin: 0;">Если у вас есть вопросы, будем рады вам помочь!<br>Звоните:&ensp;<a href="tel:+74959959560" style="color:#FF4E2C;text-decoration: none;padding-top: 5px; padding-bottom: 5px; display: inline-block;">+7 495 995-95-60</a> , пишите:&ensp;<a style="color:#FF4E2C;text-decoration: none;" href="mailto:info@creditter.ru">info@creditter.ru</a><br><b>Работаем круглосуточно!</b></p>
+          <p style="margin: 0; padding-top: 16px;">Вы можете <a style='color:#FF4E2C;text-decoration: none;' href="https://creditter.ru">отписаться от рассылки</a> в настройках профиля.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table><!-- Email Footer : END-->
+  <!-- Email Footer Second : BEGIN-->
+  <!--if mso | IE-->
+</center>
