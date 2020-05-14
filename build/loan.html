@@ -184,7 +184,7 @@
 
       .stack-column-row-center-image {
         width: 53px !important;
-        vertical-align: top;
+        vertical-align: top !important;
       }
 
       /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
@@ -235,6 +235,13 @@
         ;
       }
 
+    }
+
+    @media screen and (max-width: 400px) {
+      .bg-cover {
+        background-size: contain !important;
+        background-position: center !important;
+      }
     }
 
     @media screen and (max-width: 600px) {
