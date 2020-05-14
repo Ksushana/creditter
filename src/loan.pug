@@ -41,7 +41,6 @@ head
     /* What it does: Fixes webkit padding issue. */
     table {
     border-spacing: 0 !important;
-    border-collapse: collapse !important;
     table-layout: fixed !important;
     margin: 0 auto !important;
     }
@@ -226,11 +225,15 @@ head
     }
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (min-width: 400px) and (max-width: 600px) {
     .bg-cover {
       background-size: contain !important;
       background-position: top!important;
     }
+    }
+
+    @media screen and (max-width: 600px) {
+
 
     .stack-column-center.mobile-item {
       padding: 0 9px 15px 0!important;
@@ -247,6 +250,15 @@ head
 
     .footer-mobile-item {
       padding: 13px 0px 33px !important;
+    }
+
+    .padding-mobile {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    td {
+      border-radius: 0 !important;
     }
 
 
@@ -273,11 +285,11 @@ center(style='width: 100%; background-color:#F9F5F2;')
     // Email Body : BEGIN
     tbody
       tr
-        td.padding-null(style='padding: 44px 10px 0;')
-          table.no-border.email-container(align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' width='560' style='margin: auto;border-radius:4px;box-shadow: 0px 2px 4px #EDEFF5;')
+        td.padding-null(style='padding: 24px 10px 0;')
+          table.no-border.email-container(align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' width='560' style='margin: auto;border-radius:4px;box-shadow: 0px 2px 4px #F5F1ED;')
             // Email Header : BEGIN
             tr
-              td.no-border(style='background-color: #ffffff; padding: 13px 30px; border: 1px solid #E5E9F2;border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom: 1px solid #E5E6EB;')
+              td.no-border.padding-mobile(style='background-color: #ffffff; padding: 13px 30px 18px; border: 1px solid #EBE7E4;border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom: 1px solid #EBE7E4;')
                 table(border='0' cellpadding='0' cellspacing='0' width='100%')
                   tbody
                     tr
@@ -300,7 +312,7 @@ center(style='width: 100%; background-color:#F9F5F2;')
             // Email Header : END
             tr
               // Bulletproof Background Images c/o https://backgrounds.cm
-              td.no-border.bg-cover(valign='middle' style="border-left: 1px solid #E5E9F2;border-right: 1px solid #E5E9F2;text-align: center; background-image: url('img/loan.png'); background-color: #ffffff; background-position: center 34px;  background-size: 72%; background-repeat: no-repeat;")
+              td.no-border.bg-cover(valign='middle' style="border-left: 1px solid #EBE7E4;border-right: 1px solid #EBE7E4;text-align: center; background-image: url('img/loan.png'); background-color: #ffffff; background-position: center 34px;  background-size: 72%; background-repeat: no-repeat;")
                 a(href='https://creditter.ru/' title='SmartCredit' target='_blank' style='text-decoration: none; color: #ffffff;')
 
                   //if gte mso 9
@@ -316,14 +328,14 @@ center(style='width: 100%; background-color:#F9F5F2;')
                             a(href='https://creditter.ru/' title='SmartCredit' style='text-decoration: none; color: #ffffff;' target='_blank')
                   //if gte mso 9
             tr
-              td.no-border(style='background-color: #ffffff;border-left: 1px solid #E5E9F2;border-right: 1px solid #E5E9F2;')
+              td.no-border(style='background-color: #ffffff;border-left: 1px solid #EBE7E4;border-right: 1px solid #EBE7E4;')
                 table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
                   tr
                     td.padding-null(style="padding: 6px 30px 19px 30px; font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 25px; color: #17233B;")
                       h2( class="main-header" style='margin: 0; font-size: 31px; line-height: 38px; text-align: center; padding: 0px 53px;')
                         | Возьмите займ за 1 клик
             tr
-              td.no-border(style='padding: 10px; background-color: #ffffff; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2;')
+              td.no-border.padding-mobile(style='padding: 10px; background-color: #ffffff; border-left: 1px solid #EBE7E4; border-right: 1px solid #EBE7E4;')
                 table(role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%')
                   tr
                     // Column : BEGIN
@@ -343,7 +355,7 @@ center(style='width: 100%; background-color:#F9F5F2;')
                             img(src='https://marketing-image-production.s3.amazonaws.com/uploads/f636e65464df2b3f0324b66367bdfcb409295782d43f5e2a7c9dea4cb54bc2380f98c8d4389a32bba880e2ee6f66d24e68097b1f657254394b8740fe77804e12.png' width='34' height='34' alt='' border='0' style='width: 100%; max-width: 34px; height: auto;')
                           td.center-on-narrow(style="font-family: 'Helvetica', sans-serif; font-size: 15px; line-height: 24px; color: #17233B; text-align: left;")
                             p(style='margin: 0; text-align: left;')
-                              | Екатерина, Вам доступен займ до  30 000 руб. на лучших условиях на сайте Creditter.ru
+                              | Екатерина, Вам доступен займ до  30&nbsp;000 руб. на лучших условиях на сайте Creditter.ru
                     // Column : END
                   tr
                     // Column : BEGIN
@@ -367,7 +379,7 @@ center(style='width: 100%; background-color:#F9F5F2;')
                     // Column : END
             // 2 Even Columns : END
             tr
-              td.no-border.stack-column-row-center-small(style='background: #ffffff; padding: 0 168px 13px; border-left: 1px solid #E5E9F2;text-align: center; border-right: 1px solid #E5E9F2; ')
+              td.no-border.stack-column-row-center-small(style='background: #ffffff; padding: 0 168px 13px; border-left: 1px solid #EBE7E4;text-align: center; border-right: 1px solid #EBE7E4; ')
                 // Button : BEGIN
 
                 div( class="" style="padding-bottom: 9px; width:100%;max-width:222px;display:inline-block;vertical-align:top;")
@@ -383,7 +395,7 @@ center(style='width: 100%; background-color:#F9F5F2;')
 
             // 1 TextBlock : BEGIN
             tr
-            td.no-border.stack-column-row-center-small(style='background: #ffffff; padding: 0 102px 44px; border-left: 1px solid #E5E9F2; border-right: 1px solid #E5E9F2; ')
+            td.no-border.stack-column-row-center-small(style='background: #ffffff; padding: 0 102px 32px; border-left: 1px solid #EBE7E4; border-right: 1px solid #EBE7E4; border-bottom: 1px solid #EBE7E4;     border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;')
               // Button : BEGIN
 
               div( class="column stack-column-center" style="padding-bottom: 9px; width:50%;display:inline-block;vertical-align:top;")
@@ -407,7 +419,7 @@ center(style='width: 100%; background-color:#F9F5F2;')
   table.email-container(align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' width='600' style='margin: auto;')
     tbody
       tr
-        td(style='padding: 14px 7px 0 14px;')
+        td.padding-mobile(style='padding: 17px 7px 0 14px;')
 
 
           div( class="" style="width:100%;max-width:162px;display:inline-block;vertical-align:top;")
@@ -429,9 +441,9 @@ center(style='width: 100%; background-color:#F9F5F2;')
                       span(style="font-weight:bold; display: block; margin-bottom: -4px")
                         | Если у вас есть вопросы, будем рады вам помочь!
                       | Звоните:
-                      a(href='tel:+74959959560' style='color:#17233B;text-decoration: none;padding-top: 5px; padding-bottom: 5px; display: inline-block;') +7 495 995-95-60
-                      |  , пишите:
-                      a(style='color:#17233B;text-decoration: none;' href='mailto:info@creditter.ru') info@creditter.ru
+                      a(href='tel:+74959959560' style='color:#17233B;text-decoration: none;padding-top: 5px; padding-bottom: 5px; display: inline-block;') &nbsp;+7 495 995-95-60
+                      | , пишите:
+                      a(style='color:#17233B;text-decoration: none;' href='mailto:info@creditter.ru') &nbsp;info@creditter.ru
                       br
                       b Работаем круглосуточно!
                     p(style='margin: 0; padding-top: 16px;')
